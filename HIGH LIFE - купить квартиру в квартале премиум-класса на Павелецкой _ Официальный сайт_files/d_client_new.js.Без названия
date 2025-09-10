@@ -1,0 +1,164 @@
+var ct_ijc_v_1 = function(selector) {
+  function inject(element, value, expected_id) {
+    if (element) {
+      if (expected_id && (element && element.parentNode)) {
+        if (element.id === expected_id) {
+          element.innerHTML = value;
+        }
+      } else {
+        element.innerHTML = value;
+      }
+    }
+  }
+  
+  function html(value) {
+    if (document.body && document.readyState === "complete") {
+      initInject();
+    } else {
+      window.addEventListener('load', initInject);
+    }
+  
+    function initInject() {
+      if(selector && (selector.indexOf("#") == 0 || selector.indexOf(".") == 0)) {
+        if(selector.indexOf("#") == 0) {
+          inject(document.getElementById(selector.substring(1)), value, selector.substring(1));
+        }
+        if(selector.indexOf(".")== 0 && document.getElementsByClassName) {
+          var elements = document.getElementsByClassName(selector.substring(1));
+          for(var i = 0 ;  i < elements.length; i++){ inject(elements[i], value);}
+        }
+      }
+      window.removeEventListener('load', initInject);
+    }
+  }
+  
+  return { html:html}
+};if(!window.ct_locationchange_listen){if(window.ct_locationchange_listen=1,"function"!=typeof window.CustomEvent){function CustomEvent(t,n){n=n||{bubbles:!1,cancelable:!1,detail:null};var e=document.createEvent("CustomEvent");return e.initCustomEvent(t,n.bubbles,n.cancelable,n.detail),e}window.CustomEvent=CustomEvent}!function(){var n,e;history.pushState=(n=history.pushState,function(){var t=n.apply(this,arguments);return window.dispatchEvent(new CustomEvent("pushState")),window.dispatchEvent(new CustomEvent("locationchange")),t}),history.replaceState=(e=history.replaceState,function(){var t=e.apply(this,arguments);return window.dispatchEvent(new CustomEvent("replaceState")),window.dispatchEvent(new CustomEvent("locationchange")),t}),window.addEventListener("popstate",function(){window.dispatchEvent(new CustomEvent("locationchange"))})}()}
+
+var ct_c=function(c){try{var t;return 0<(t="object"==typeof c?c:document.querySelectorAll(c)).length?[].slice.call(t):[]}catch(c){console.log(c)}},ct_contains=function(c,n){try{var e=[];return ct_c(c)&&[].forEach.call(ct_c(c),function(c){var t=c.firstChild;if(t)for(;3===t.nodeType&&-1!=t.nodeValue.indexOf(n)&&e.push(c),t=t.nextSibling;);}),0<e.length?e:[]}catch(c){console.log(c)}},ct_not=function(c,t){try{var n=[];return 0==ct_c(t)?ct_c(c):(ct_c(c)&&ct_c(t)&&[].forEach.call(ct_c(c),function(c){-1==Array.from(ct_c(t)).indexOf(c)&&n.push(c)}),0<n.length?n:[])}catch(c){console.log(c)}},ct_html=function(c,t){try{ct_c(c)&&[].forEach.call(ct_c(c),function(c){c&&(c.innerHTML=t)})}catch(c){console.log(c)}},ct_repl=function(c,o,l){try{ct_c(c)&&[].forEach.call(ct_c(c),function(c){var t,n,e=c.firstChild;if(e)for(;3===e.nodeType&&(n=(t=e.nodeValue).replace(o,l))!==t&&(e.nodeValue=n),e=e.nextSibling;);})}catch(c){console.log(c)}},ct_repl_a=function(c,t,n){try{ct_c(c)&&[].forEach.call(ct_c(c),function(c){c&&c.setAttribute(t,n)})}catch(c){console.log(c)}},ct_event_listen=function(c,t,n){try{"string"==typeof c&&(c=[c]),[].forEach.call(c,function(c){document.addEventListener(c,{handleEvent:function(c){ct_c(t)&&-1!=[].slice.call(ct_c(t)).indexOf(c.target)&&n()}})})}catch(c){console.log(c)}},ct_remove=function(c){try{ct_c(c)&&[].forEach.call(ct_c(c),function(c){c&&c.parentNode.removeChild(c)})}catch(c){console.log(c)}},ct_ready=function(c){try{c(),"loading"===document.readyState&&document.addEventListener("DOMContentLoaded",c),"complete"!==document.readyState&&window.addEventListener("load",c)}catch(c){console.log(c)}};
+function ct_replace(){
+    ct_repl('body *',/\(495\) 116-70-17|\(495\)116-70-17|\(495\) 641-35-35/gi, "(495) 492-22-07");
+    ct_repl('body *',/\(495\) 641 35 35|\(495\)641 35 35|.495. 641.35.35|495 641-35-35/gi, "495 492 22 07");
+    ct_repl_a('a[href*="tel:"]','href','tel:+74954922207');
+}
+
+window.addEventListener('locationchange', function () {
+setTimeout(function(){ ct_replace(); }, 100);
+setTimeout(function(){ ct_replace(); }, 500);
+setTimeout(function(){ ct_replace(); }, 1000);
+setTimeout(function(){ ct_replace(); }, 2000);
+});
+ct_ready(ct_replace);if(!window.ct_locationchange_listen){if(window.ct_locationchange_listen=1,"function"!=typeof window.CustomEvent){function CustomEvent(t,n){n=n||{bubbles:!1,cancelable:!1,detail:null};var e=document.createEvent("CustomEvent");return e.initCustomEvent(t,n.bubbles,n.cancelable,n.detail),e}window.CustomEvent=CustomEvent}!function(){var n,e;history.pushState=(n=history.pushState,function(){var t=n.apply(this,arguments);return window.dispatchEvent(new CustomEvent("pushState")),window.dispatchEvent(new CustomEvent("locationchange")),t}),history.replaceState=(e=history.replaceState,function(){var t=e.apply(this,arguments);return window.dispatchEvent(new CustomEvent("replaceState")),window.dispatchEvent(new CustomEvent("locationchange")),t}),window.addEventListener("popstate",function(){window.dispatchEvent(new CustomEvent("locationchange"))})}()} !function(){var e=[window.Element,window.CharacterData,window.DocumentType],o=[];e.forEach(function(e){e&&o.push(e.prototype)}),o.forEach(function(e){e.hasOwnProperty("remove")||Object.defineProperty(e,"remove",{configurable:!0,enumerable:!0,writable:!0,value:function(){this.parentNode.removeChild(this)}})})}();
+ 
+function getCtScript(){
+    console.log('calltouch_reload');
+   (function(w,d,n,c){w.CalltouchDataObject=n;w[n]=function(){w[n]["callbacks"].push(arguments)};if(!w[n]["callbacks"]){w[n]["callbacks"]=[]}w[n]["loaded"]=false;if(typeof c!=="object"){c=[c]}w[n]["counters"]=c;for(var i=0;i<c.length;i+=1){p(c[i])}function p(cId){var a=d.getElementsByTagName("script")[0],s=d.createElement("script"),i=function(){a.parentNode.insertBefore(s,a)},m=typeof Array.prototype.find === 'function',n=m?"init-min.js":"init.js";s.async=true;s.src="https://mod.calltouch.ru/"+n+"?id="+cId;if(w.opera=="[object Opera]"){d.addEventListener("DOMContentLoaded",i,false)}else{i()}}})(window,document,"ct","n5ovc6d9");
+}
+ 
+function deleteCtScriptNodes(){
+    var nodes = document.getElementsByTagName('script');
+    var nodesToRemove = [];
+    for (var i = 0; i < nodes.length; i++) { if (nodes[i] && nodes[i].src && nodes[i].src.match(/calltouch.(ru|net)/) !== null) { nodesToRemove.push(nodes[i]); } }
+    var node; while (node = nodesToRemove.shift()) { node.remove(); }
+}
+ 
+if (!window.ct_ajax_replacer){
+    window.ct_ajax_replacer = function(){
+        setTimeout(function(){
+            try{
+                deleteCtScriptNodes();
+                if (document.querySelector('#CalltouchWidgetFrame')){ document.querySelector('#CalltouchWidgetFrame').remove(); }
+                if (window.ctw){ window.ctw = undefined; } if (window.Calltouch){ window.Calltouch = undefined; }
+                getCtScript();
+            } catch(e) { console.log(e); }
+        }, 100);
+    }
+}
+ 
+try{
+    window.removeEventListener('locationchange', ct_ajax_replacer);
+    window.addEventListener('locationchange', ct_ajax_replacer);
+} catch(e) { console.log(e); }            if (window['ct'] && typeof window['ct'] === 'function') {
+            window['ct']('init_matcher_replacement', {useObserver: true, params: [{"value_code":"495","value_phone":"4922207","phone_code":"903","phone_number":"0116595","selector":"body"},{"value_code":"495","value_phone":"4922207","phone_code":"495","phone_number":"6413535","selector":"body"}]});
+            }
+            window.calltouch_phone = "74954922207";            if (window['ct'] && typeof window['ct'] === 'function') {
+            window['ct']('create_session', {
+                sessionId: 828103353,
+                siteId: 42226,
+                modId: 'n5ovc6d9',
+                setCookie: true,
+                endSessionTime: 1757486240,
+                domain: 'highlife.ru',
+                setCtCookie: '1600000000549702007',
+                setLkCookie: null,
+                denialTime: 15,
+                phones: {"181953":{"subPoolName":"\u041e\u0441\u0442\u0430\u043b\u044c\u043d\u044b\u0435","phoneId":"1079600","phoneNumber":"74954922207","phoneCode":"495","phoneBody":"4922207"}},
+                ecommerceGa4Enabled: false,
+                ecommerceTimeout: 1000,
+                calltouchDnsHost: '',
+                dataGoEnabled: false,
+                GA4: [],
+                quietMediaEnabled: false,
+                fields: '',
+                isGtagEcom: false,
+                cookieHash: '',
+                firstPartyUrl: ''
+            });
+                        window['ct']('session_data', {"mod_id":"n5ovc6d9","source":"kwork.ru","medium":"referral","utm_source":"","utm_medium":"","utm_campaign":"","utm_content":"","utm_term":"","keyword":"(not set)","city":"tashkent","region":"toshkent shahri","country":"","url":"https:\/\/highlife.ru\/","deviceType":"desktop"});
+                        } else {
+            var xmlHttp = new XMLHttpRequest();
+            xmlHttp.open( "GET", 'https://mod.calltouch.ru/set_attrs_by_get.php?siteId=42226&sessionId=828103353&attrs={"clientError_NO_CT_CREATE_SESSION": 1}', true );
+            xmlHttp.send( null );
+            }
+                    setTimeout(function(){
+            try{
+                var ctgdsessid = window[window.CalltouchDataObject]('calltracking_params','n5ovc6d9').sessionId;
+                var ctgdsiteId = window[window.CalltouchDataObject]('calltracking_params', 'n5ovc6d9').siteId;
+                var XHR = ("onload" in new XMLHttpRequest()) ? XMLHttpRequest : XDomainRequest;
+                var xhr = new XHR();
+                xhr.withCredentials = true;
+                xhr.open('GET', 'https://match.new-programmatic.com/userbind?src=clltch&gi=1&pbf=1&siteId='+ctgdsiteId+'&burl=https://mod.calltouch.ru/geniusdesk_uid.php?vid=${VID}&siteId='+ctgdsiteId+'&sessionId='+ctgdsessid, true);
+                xhr.onerror = function(){console.log('Ошибка '+this.status);}
+                xhr.send();
+            } catch(e) { console.log(e) }
+        }, 2e3);
+        function mdsnprSync() {
+    var i = window.ct("calltracking_params", "n5ovc6d9").ctGlobalId,
+        t = window.ct("calltracking_params", "n5ovc6d9").sessionId,
+        rdrurl = encodeURIComponent("https://mod.calltouch.ru/mediasniper_uid.php?vid={UID}&siteId=42226&sessionId=" + t),
+        o = new ("onload" in new XMLHttpRequest ? XMLHttpRequest : XDomainRequest);
+    o.withCredentials = true;
+    o.open("GET", "https://sync.bumlam.com/?src=ctouch&uid=" + i + "&rurl=" + rdrurl, true);
+    o.onerror = function () { console.log("Ошибка " + this.status);};
+    o.send();
+};
+
+async function getParamsToMdsnprSync()
+    {
+        const params = await window.ct('calltracking_params', 'n5ovc6d9', null, 'withPromise');
+        mdsnprSync();
+    }
+getParamsToMdsnprSync();
+                setTimeout(function(){var i=window[window.CalltouchDataObject]("calltracking_params","n5ovc6d9").ctGlobalId,t=window[window.CalltouchDataObject]("calltracking_params","n5ovc6d9").sessionId,n=location.protocol+"//"+location.host,o=new("onload"in new XMLHttpRequest?XMLHttpRequest:XDomainRequest);o.withCredentials=!0,o.open("GET","https://dm.hybrid.ai/match?id=803&vid="+i+"&burl=https://mod.calltouch.ru/hybridai_id.php?vid=${VID}&siteId=42226&sessionId="+t+"&domain="+n,!0),o.onerror=function(){console.log("Ошибка "+this.status)},o.send()},2e3);
+        
+window.ctw = {};
+window.ctw.clientFormConfig = {}
+window.ctw.clientFormConfig.getClientFormsSettingsUrl = "//mod.calltouch.ru/callback_widget_user_form_find.php";
+window.ctw.clientFormConfig.sendClientFormsRequestUrl = "//mod.calltouch.ru/callback_request_user_form_create.php";
+(function (targetWindow, nameSpace, params){
+!function(){var e={9713:function(e){e.exports=function(e,t,n){return t in e?Object.defineProperty(e,t,{value:n,enumerable:!0,configurable:!0,writable:!0}):e[t]=n,e}},693:function(e,t,n){var o=n(9713);e.exports=function(e){for(var t=1;t<arguments.length;t++){var n=null!=arguments[t]?arguments[t]:{},r=Object.keys(n);"function"==typeof Object.getOwnPropertySymbols&&(r=r.concat(Object.getOwnPropertySymbols(n).filter((function(e){return Object.getOwnPropertyDescriptor(n,e).enumerable})))),r.forEach((function(t){o(e,t,n[t])}))}return e}}},t={};function n(o){var r=t[o];if(void 0!==r)return r.exports;var a=t[o]={exports:{}};return e[o](a,a.exports,n),a.exports}n.n=function(e){var t=e&&e.__esModule?function(){return e.default}:function(){return e};return n.d(t,{a:t}),t},n.d=function(e,t){for(var o in t)n.o(t,o)&&!n.o(e,o)&&Object.defineProperty(e,o,{enumerable:!0,get:t[o]})},n.o=function(e,t){return Object.prototype.hasOwnProperty.call(e,t)},function(){"use strict";var e=n(693),t=n.n(e);function o(e,n,o,r){try{var a=Boolean(window.event&&window.event.target&&"A"===window.event.target.nodeName),c=Boolean(window.event&&(window.event.target&&"submit"===window.event.target.type||"submit"===window.event.type)),i=function(){var e;if(e||"undefined"==typeof XMLHttpRequest)try{e=new ActiveXObject("Msxml2.XMLHTTP")}catch(t){try{e=new ActiveXObject("Microsoft.XMLHTTP")}catch(t){e=!1}}else e=new XMLHttpRequest;return e}(),s=n?"POST":"GET";i.open(s,e,!a&&!c&&!r),a||c||r||(i.timeout=6e4),i.setRequestHeader("Content-type","application/json"),i.onreadystatechange=function(){if(4===i.readyState&&o)if(200===i.status){var e=function(e){var t;try{t=JSON.parse(e)}catch(e){}return t}(i.response);e?e.data?o(!0,t()({},e.data)):e.error?o(!1,t()({},e.error)):o(!1,{type:"unknown_error",message:"Unknown JSON format",details:{}}):o(!1,{type:"unknown_error",message:"JSON parse error",details:{}})}else 0===i.status?o(!1,{type:"unknown_error",message:"Request timeout exceeded or connection reset",details:{}}):o(!1,{type:"unknown_error",message:"Unexpected HTTP code: ".concat(i.statusText),details:{}})},i.send(n)}catch(e){o&&o(!1,{type:"unknown_error",message:"Unexpected js exception",details:{}})}}!function(e,n,r){var a=e||window,c=n||"window.ctw";a[c]||(a[c]={});var i=a[c].clientFormConfig||{},s=i.getClientFormsSettingsUrl,u=i.sendClientFormsRequestUrl;a[c].getRouteKeyData=function(e,t){var n=1e6*Math.random(),a="".concat(s,"?siteId=").concat(r.siteId,"&routeKey=").concat(e,"&pageUrl=").concat(r.pageUrl,"&sessionId=").concat(r.sessionId);o("".concat(a,"&rand=").concat(Math.floor(n)),null,t)};var d=function(e,n,a,c){var i=arguments.length>4&&void 0!==arguments[4]?arguments[4]:null,s=arguments.length>5&&void 0!==arguments[5]?arguments[5]:[],d=arguments.length>6&&void 0!==arguments[6]?arguments[6]:null,l=arguments.length>7&&void 0!==arguments[7]&&arguments[7],f=1e6*Math.random(),p={siteId:r.siteId,sessionId:r.sessionId,workMode:1,pageUrl:r.pageUrl,tags:s,phone:n,routeKey:e,fields:a,scheduleTime:i,unitId:d},w="two_factor_error",v=function(e,r){if(e||r.type!==w)return c(e,r);var a=document.querySelector("#CalltouchWidgetFrame");if(a&&a.contentWindow&&r.context){var i=r.context.widgetId;a&&a.contentWindow.openTwoFactorForm(n,i,(function(e,n){var r=e.twoFactorCode,a=e.reqUuid;o("".concat(u,"?rand=2f").concat(Math.floor(f)),JSON.stringify(t()({},p,{twoFactorCode:r,reqUuid:a})),(function(e,t){n(e,t),e&&c(e,t)}),l)}))}};o("".concat(u,"?rand=").concat(Math.floor(f)),JSON.stringify(p),v,l)};a[c].createRequest=d,a[c+"_"+r.modId]={createRequest:d}}(targetWindow,nameSpace,params)}()}();
+})(window, "ctw", {"siteId":42226,"sessionId":828103353,"pageUrl":"https:\/\/highlife.ru\/","modId":"n5ovc6d9"})
+        if (window['ct']) {
+            ct('modules', 'widgets', 'init', {"siteId":42226,"sessionId":828103353,"sessionData":{"id":828103353,"url":"https:\/\/highlife.ru\/","source":"kwork.ru","medium":"referral","utmCampaign":"","deviceType":"desktop","pools":[{"subPoolId":181953,"phoneId":1079600}],"geoCity":"tashkent","geoRegion":"toshkent shahri","geoCountry":"uz","daysSinceLastVisit":null,"geoTimezone":"Europe\/Moscow"},"widgetTypes":["callback","wheel-fortune","chat","telegram-messenger","whatsapp-messenger"],"isMobileDevice":false});
+        }
+        if (typeof window['ct']) {window['ct']('modules','widgets','goalObserver','achievedGoal','wss://ws.calltouch.ru/client/subscription/4c404cbec5a227d2dfa0e2e1959f1d69');}            var call_value = '828103353';
+            var call_value_n5ovc6d9 = call_value;
+            if(window.onSessionCallValue) {
+            onSessionCallValue('828103353', '');
+            }
+            window._txq = window._txq || [];
+var s = document.createElement('script'); s.type = 'text/javascript'; s.async = true; s.src = '//st.hybrid.ai/txsp.js';
+(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(s);
+_txq.push(['createPixel', '6685369c7bc72f86284b60ec']);
+_txq.push(['track', 'PageView']);
+            
